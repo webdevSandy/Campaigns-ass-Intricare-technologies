@@ -1,0 +1,455 @@
+{
+  "user": {
+    "name": "John Doe",
+    "role": "Admin",
+    "email": "johndoe@gmail.com",
+    "avatar": "https://i.pravatar.cc/64?img=3"
+  },
+  "navigation": [
+    { "id": "campaign", "label": "Campaign", "icon": "📢", "active": true }
+  ],
+  "flowSteps": [
+    { "id": 1, "label": "Define Target Audience", "iconKey": "list" },
+    { "id": 2, "label": "Sender Profiles",        "iconKey": "user" },
+    { "id": 3, "label": "Settings",               "iconKey": "gear" },
+    { "id": 4, "label": "Stats",                  "iconKey": "chart" }
+  ],
+  "importMethods": [
+    {
+      "id": "linkedin",
+      "title": "LinkedIn Search",
+      "subtitle": "(Basic, Sales Nav, Post, Group or Event URL)",
+      "iconKey": "linkedin"
+    },
+    {
+      "id": "csv",
+      "title": "Upload CSV File",
+      "subtitle": "Upload LinkedIn profiles via CSV.",
+      "extra": "Download Sample",
+      "iconKey": "doc"
+    },
+    {
+      "id": "lookalike",
+      "title": "Lookalike Audience",
+      "subtitle": "Use Lead Finder to find audience.",
+      "iconKey": "users"
+    },
+    {
+      "id": "webhook",
+      "title": "Inbound Webhook",
+      "subtitle": "Sync leads from zapier, n8n make in real time",
+      "iconKey": "linkedin"
+    }
+  ],
+  "filters": {
+    "channels": [
+      { "value": "linkedin", "label": "LinkedIn" },
+      { "value": "email", "label": "Email" }
+    ],
+    "statuses": [
+      { "value": "running", "label": "Running" },
+      { "value": "paused", "label": "Paused" },
+      { "value": "stopped", "label": "Stopped" }
+    ]
+  },
+  "campaigns": [
+    {
+      "id": 1,
+      "name": "Tech Founder",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "2h ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [1, 2, 3],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 2,
+      "name": "Growth Ca...",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [4, 5, 6],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 3,
+      "name": "Campaign P...",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [7, 8, 9],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 4,
+      "name": "Lead Engine",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "🔥", "time": "1d ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [10, 11, 12],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 5,
+      "name": "Campaign Hub",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "5h ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [13, 14, 15],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 6,
+      "name": "Tech Founder",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "6h ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [16, 17, 18],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 7,
+      "name": "Tech Founder",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "6h ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [19, 20, 21],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 8,
+      "name": "Tech Founder",
+      "channels": ["linkedin", "email"],
+      "createdOn": "21 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "6h ago" },
+      "invitesSent": { "count": 265, "subtext": "15% Accepted" },
+      "replyRate":   { "count": 125, "subtext": "10% Received" },
+      "emailSent":   { "count": 400, "subtext": "10% Mail Opened" },
+      "senders": [22, 23, 24],
+      "status": "running",
+      "dailyLimit": "40 invites/day"
+    },
+    {
+      "id": 9,
+      "name": "SaaS Decision Makers",
+      "channels": ["linkedin"],
+      "createdOn": "18 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "3h ago" },
+      "invitesSent": { "count": 540, "subtext": "22% Accepted" },
+      "replyRate":   { "count": 210, "subtext": "18% Received" },
+      "emailSent":   { "count": 0,   "subtext": "—" },
+      "senders": [25, 26, 27],
+      "status": "running",
+      "dailyLimit": "60 invites/day"
+    },
+    {
+      "id": 10,
+      "name": "Enterprise CTOs",
+      "channels": ["email"],
+      "createdOn": "17 Jan, 2026",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 0,   "subtext": "—" },
+      "replyRate":   { "count": 0,   "subtext": "—" },
+      "emailSent":   { "count": 825, "subtext": "32% Mail Opened" },
+      "senders": [28, 29, 30],
+      "status": "paused",
+      "dailyLimit": "100 emails/day"
+    },
+    {
+      "id": 11,
+      "name": "Series A Founders",
+      "channels": ["linkedin", "email"],
+      "createdOn": "15 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "tiwme": "12h ago" },
+      "invitesSent": { "count": 312, "subtext": "19% Accepted" },
+      "replyRate":   { "count": 88,  "subtext": "12% Received" },
+      "emailSent":   { "count": 250, "subtext": "21% Mail Opened" },
+      "senders": [31, 32, 33],
+      "status": "running",
+      "dailyLimit": "30 invites/day"
+    },
+    {
+      "id": 12,
+      "name": "Growth Marketers EU",
+      "channels": ["linkedin"],
+      "createdOn": "12 Jan, 2026",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 410, "subtext": "11% Accepted" },
+      "replyRate":   { "count": 47,  "subtext": "5% Received"  },
+      "emailSent":   { "count": 0,   "subtext": "—" },
+      "senders": [34, 35, 36],
+      "status": "paused",
+      "dailyLimit": "50 invites/day"
+    },
+    {
+      "id": 13,
+      "name": "FinTech Heads",
+      "channels": ["linkedin", "email"],
+      "createdOn": "10 Jan, 2026",
+      "crm": { "state": "synced", "icon": "🔥", "time": "2d ago" },
+      "invitesSent": { "count": 198, "subtext": "9% Accepted"  },
+      "replyRate":   { "count": 33,  "subtext": "4% Received"  },
+      "emailSent":   { "count": 156, "subtext": "8% Mail Opened" },
+      "senders": [37, 38, 39],
+      "status": "stopped",
+      "dailyLimit": "25 invites/day"
+    },
+    {
+      "id": 14,
+      "name": "Product Hunt Launchers",
+      "channels": ["email"],
+      "createdOn": "8 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "4h ago" },
+      "invitesSent": { "count": 0,   "subtext": "—" },
+      "replyRate":   { "count": 0,   "subtext": "—" },
+      "emailSent":   { "count": 1240,"subtext": "27% Mail Opened" },
+      "senders": [40, 41, 42],
+      "status": "running",
+      "dailyLimit": "120 emails/day"
+    },
+    {
+      "id": 15,
+      "name": "AI Startup Founders",
+      "channels": ["linkedin", "email"],
+      "createdOn": "5 Jan, 2026",
+      "crm": { "state": "synced", "icon": "✨", "time": "1d ago" },
+      "invitesSent": { "count": 670, "subtext": "26% Accepted" },
+      "replyRate":   { "count": 245, "subtext": "20% Received" },
+      "emailSent":   { "count": 540, "subtext": "35% Mail Opened" },
+      "senders": [43, 44, 45],
+      "status": "running",
+      "dailyLimit": "75 invites/day"
+    },
+    {
+      "id": 16,
+      "name": "DevOps Leaders",
+      "channels": ["linkedin"],
+      "createdOn": "3 Jan, 2026",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 89,  "subtext": "7% Accepted" },
+      "replyRate":   { "count": 12,  "subtext": "3% Received" },
+      "emailSent":   { "count": 0,   "subtext": "—" },
+      "senders": [46, 47, 48],
+      "status": "stopped",
+      "dailyLimit": "20 invites/day"
+    },
+    {
+      "id": 17,
+      "name": "B2B Sales Leaders",
+      "channels": ["linkedin", "email"],
+      "createdOn": "28 Dec, 2025",
+      "crm": { "state": "synced", "icon": "✨", "time": "8h ago" },
+      "invitesSent": { "count": 432, "subtext": "17% Accepted" },
+      "replyRate":   { "count": 119, "subtext": "11% Received" },
+      "emailSent":   { "count": 380, "subtext": "14% Mail Opened" },
+      "senders": [49, 50, 51],
+      "status": "running",
+      "dailyLimit": "45 invites/day"
+    },
+    {
+      "id": 18,
+      "name": "HealthTech Founders",
+      "channels": ["email"],
+      "createdOn": "22 Dec, 2025",
+      "crm": { "state": "synced", "icon": "🔥", "time": "3d ago" },
+      "invitesSent": { "count": 0,   "subtext": "—" },
+      "replyRate":   { "count": 0,   "subtext": "—" },
+      "emailSent":   { "count": 920, "subtext": "29% Mail Opened" },
+      "senders": [52, 53, 54],
+      "status": "paused",
+      "dailyLimit": "90 emails/day"
+    },
+    {
+      "id": 19,
+      "name": "VC Partners NA",
+      "channels": ["linkedin"],
+      "createdOn": "18 Dec, 2025",
+      "crm": { "state": "synced", "icon": "✨", "time": "5h ago" },
+      "invitesSent": { "count": 156, "subtext": "31% Accepted" },
+      "replyRate":   { "count": 68,  "subtext": "23% Received" },
+      "emailSent":   { "count": 0,   "subtext": "—" },
+      "senders": [55, 56, 57],
+      "status": "running",
+      "dailyLimit": "15 invites/day"
+    },
+    {
+      "id": 20,
+      "name": "E-commerce Operators",
+      "channels": ["linkedin", "email"],
+      "createdOn": "15 Dec, 2025",
+      "crm": { "state": "unsynced" },
+      "invitesSent": { "count": 287, "subtext": "13% Accepted" },
+      "replyRate":   { "count": 54,  "subtext": "6% Received"  },
+      "emailSent":   { "count": 312, "subtext": "16% Mail Opened" },
+      "senders": [58, 59, 60],
+      "status": "running",
+      "dailyLimit": "35 invites/day"
+    }
+  ],
+  "leadLists": [
+    { "id": "ll-1", "name": "Tech Founders Q2",      "subtext": "3,120 leads" },
+    { "id": "ll-2", "name": "EU SaaS Leaders",       "subtext": "1,540 leads" },
+    { "id": "ll-3", "name": "Marketing Heads USA",   "subtext": "890 leads"   }
+  ],
+  "lookalikeAudiences": [
+    { "id": "la-1", "name": "Founder",       "count": "1000+ Users in the List" },
+    { "id": "la-2", "name": "Tech Profiles", "count": "1000+ Users in the List" }
+  ],
+  "linkedinProfiles": [
+    {
+      "id": "lp-1",
+      "name": "Edgar Jones",
+      "connections": "1,250 connections",
+      "avatar": "https://i.pravatar.cc/64?img=15",
+      "health": 72,
+      "dailyLimit": "Invites: 40 / day",
+      "accountType": "Premium",
+      "status": "connected",
+      "selected": false
+    },
+    {
+      "id": "lp-2",
+      "name": "Maya Patel",
+      "connections": "3,400 connections",
+      "avatar": "https://i.pravatar.cc/64?img=47",
+      "health": 88,
+      "dailyLimit": "Invites: 60 / day",
+      "accountType": "Sales Navigator",
+      "status": "connected",
+      "selected": true
+    },
+    {
+      "id": "lp-3",
+      "name": "Carlos Rivera",
+      "connections": "890 connections",
+      "avatar": "https://i.pravatar.cc/64?img=33",
+      "health": 45,
+      "dailyLimit": "Invites: 25 / day",
+      "accountType": "Basic",
+      "status": "warning",
+      "selected": false
+    }
+  ],
+  "emailAccounts": [
+    {
+      "id": "ea-1",
+      "name": "outreach@company.com",
+      "subtext": "Gmail · 1 day ago",
+      "avatar": "https://i.pravatar.cc/64?img=21",
+      "health": 95,
+      "dailyLimit": "Emails: 120 / day",
+      "accountType": "Workspace",
+      "status": "connected",
+      "selected": false
+    }
+  ],
+  "settings": {
+    "defaultName": "New Outreach Campaign",
+    "windowPresets": [
+      "USA Outreach Time",
+      "EU Business Hours",
+      "Asia Pacific Hours",
+      "Custom Window"
+    ],
+    "weekdays": [
+      { "id": "mon", "label": "MON", "active": true  },
+      { "id": "tue", "label": "TUE", "active": true  },
+      { "id": "wed", "label": "WED", "active": true  },
+      { "id": "thu", "label": "THU", "active": true  },
+      { "id": "fri", "label": "FRI", "active": false },
+      { "id": "sat", "label": "SAT", "active": true  },
+      { "id": "sun", "label": "SUN", "active": false }
+    ],
+    "defaultTimeRange": "11:30 AM - 04:00 PM",
+    "defaultTimezone":  "USA Timezone",
+    "aiAssist": [
+      {
+        "id":          "auto-reply",
+        "iconKey":     "chat",
+        "title":       "Auto message  after reply detected",
+        "description": "AI auto-replies to leads who message you back",
+        "enabled":     false
+      },
+      {
+        "id":          "auto-handle",
+        "iconKey":     "send",
+        "titlePrefix": "Auto handle leads after",
+        "valueInput":  2,
+        "titleSuffix": "Follow-ups",
+        "description": "AI takes over after two follow-ups.",
+        "enabled":     false
+      }
+    ],
+    "zapierEvents": [
+      { "id": "response",         "label": "Response received",   "checked": true  },
+      { "id": "invite-sent",      "label": "Invite sent",         "checked": false },
+      { "id": "invite-accepted",  "label": "Invitation accepted", "checked": false },
+      { "id": "invite-withdrawn", "label": "Invitation withdrawn","checked": false },
+      { "id": "followup-sent",    "label": "Followup Sent",       "checked": false }
+    ],
+    "zapierIntegrations": [
+      { "id": "zapier",   "label": "zapier",   "color": "#FF4A00" },
+      { "id": "n8n",      "label": "n8n",      "color": "#EA4B71" },
+      { "id": "webhooks", "label": "webhooks", "color": "#1E293B" }
+    ],
+    "footerDisclaimer": "If a lead answers your invite, message, or InMail, we stop sending further steps automatically.",
+    "footerLinkLabel":  "Learn more"
+  },
+  "csvMapping": [
+    { "systemField": "First Name",   "csvOptions": ["first_name", "name"],          "status": "mapped" },
+    { "systemField": "Last Name",    "csvOptions": ["last_name", "surname"],        "status": "mapped" },
+    { "systemField": "Email",        "csvOptions": ["email", "email_address"],      "status": "mapped" },
+    { "systemField": "LinkedIn URL", "csvOptions": ["linkedin_url", "profile_link"],"status": "review" },
+    { "systemField": "Company",     "csvOptions": ["company", "organization"],      "status": "mapped" }
+  ],
+  "workflowOptions": [
+    {
+      "value": "advanced",
+      "title": "Advanced Workflow",
+      "tagline": "Best for high-volume outreach",
+      "features": "● Conditional logic   ● Multiple paths   ● More control",
+      "recommended": true
+    },
+    {
+      "value": "simple",
+      "title": "Simple Workflow",
+      "tagline": "Best for beginners",
+      "features": "● Linear steps   ● No conditions   ● Easy Setup",
+      "recommended": false
+    }
+  ],
+  "timezones": [
+    "Asia/Kolkata (IST)",
+    "America/New_York (EST)",
+    "Europe/London (GMT)"
+  ],
+  "webhookUrl": "https://api.intricare.io/webhook/camp_xxxxxxxxxxx"
+}

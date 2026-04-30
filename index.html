@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Intricare – Campaigns</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="app">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-icon">⚡</div>
+      <span class="brand-name">Frontend Task</span>
+      <button class="sidebar-toggle">☰</button>
+    </div>
+    <nav class="sidebar-nav" id="sidebar-nav"></nav>
+    <div class="sidebar-bottom">
+      <div class="sb-user">
+        <img id="sb-avatar" src="" alt="avatar" class="sb-avatar"/>
+        <div>
+          <div class="sb-name" id="sb-name"></div>
+          <div class="sb-role" id="sb-role"></div>
+        </div>
+        <button class="sb-logout">⎋</button>
+      </div>
+      <div class="sb-email" id="sb-email"></div>
+      <div class="theme-switcher">
+        <button class="theme-btn active" id="btn-light" onclick="setTheme('light')">☀ Light</button>
+        <button class="theme-btn" id="btn-dark" onclick="setTheme('dark')">☾ Dark</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-wrap">
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span id="bc-page" onclick="onBreadcrumbClick()">Campaign</span>
+        <span class="bc-sep" id="bc-sep2" style="display:none">›</span>
+        <span id="bc-sub" style="display:none"></span>
+      </div>
+      <div class="topbar-user">
+        <div class="topbar-user-info">
+          <span class="tu-name" id="tu-name"></span>
+          <span class="tu-role" id="tu-role"></span>
+        </div>
+        <img id="tu-avatar" src="" alt="user" class="topbar-avatar"/>
+      </div>
+    </header>
+
+    <!-- PAGE: Campaign Listing (default active) -->
+    <section id="pg-list" class="page active">
+
+      <!-- Page Title Row -->
+      <div class="camp-title-row">
+        <div>
+          <h2 class="camp-heading">All Campaigns List</h2>
+          <p class="camp-sub">A quick look at all of your outreach initiatives.</p>
+        </div>
+        <button class="btn-primary" onclick="openWorkflowModal()">New Campaign</button>
+      </div>
+
+      <!-- Filter Bar -->
+      <div class="filter-bar">
+        <div class="filter-left">
+          <div class="filter-dropdown">
+            <select class="ui-select" id="filter-channel" onchange="applyFilters()"></select>
+          </div>
+          <div class="filter-dropdown">
+            <select class="ui-select" id="filter-status" onchange="applyFilters()"></select>
+          </div>
+          <button class="btn-clear" id="btn-clear-filters" onclick="clearFilters()">Clear All</button>
+        </div>
+        <button class="btn-export">&#8682; Export List</button>
+      </div>
+
+      <!-- Campaign Table -->
+      <div class="camp-table-wrap">
+        <table class="camp-tbl">
+          <thead>
+            <tr>
+              <th class="th-check"><input type="checkbox" id="chk-all"/></th>
+              <th>ALL CAMPAIGNS</th>
+              <th>CRM</th>
+              <th>INVITES SENT</th>
+              <th>REPLY RATE</th>
+              <th>EMAIL SENT</th>
+              <th>SENDER</th>
+              <th>STATUS</th>
+              <th>DAILY LIMIT</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="camp-tbody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- CAMPAIGN FLOW -->
+    <div id="flow-wrap" style="display:none;flex-direction:column;flex:1;">
+      <!-- Stepper (rendered from data.flowSteps) -->
+      <div class="stepper" id="stepper"></div>
+
+      <!-- STEP 1: Define Target Audience -->
+      <section id="step-1" class="flow-page active">
+        <div class="flow-body">
+
+          <!-- Section A: Choose Import Method -->
+          <div class="flow-section" id="section-choose">
+            <div class="fs-header">
+              <div class="fs-bullet" id="bullet-choose"></div>
+              <h3>Choose Import Method</h3>
+              <button class="fs-toggle" onclick="toggleSection(this)" aria-label="Toggle section">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+              </button>
+            </div>
+            <div class="fs-body">
+              <div class="im-card-grid" id="im-card-grid"></div>
+            </div>
+          </div>
+
+          <!-- Section B: LinkedIn Search detail -->
+          <div class="flow-section detail-section" id="linkedin-detail" hidden>
+            <div class="fs-header">
+              <div class="fs-bullet"></div>
+              <h3>Paste LinkedIn Search URL</h3>
+            </div>
+            <div class="fs-body">
+              <div class="li-detail-panel">
+                <div class="li-detail-top">
+                  <div class="li-detail-info">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="#4F6EE8"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-11 14H6V10h2v7zm-1-8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 8h-2v-3.5c0-.83-.67-1.5-1.5-1.5S11 12.67 11 13.5V17H9v-7h2v1.5c.69-.79 1.59-1.5 2.5-1.5 1.93 0 3.5 1.57 3.5 3.5V17z"/></svg>
+                    <span>Find your target audience with
+                      <a class="li-link" href="#">LinkedIn Search</a> or
+                      <a class="li-link" href="#">Sales Navigator</a> or
+                      <a class="li-link" href="#">Post URL</a> or
+                      <a class="li-link" href="#">Group URL</a>
+                    </span>
+                  </div>
+                  <a class="li-detail-guide" href="#">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    Search Guide
+                  </a>
+                </div>
+                <div class="li-detail-input-row">
+                  <input type="text" id="li-url-input" class="ui-input li-url-input" placeholder="https://www.linkedin.com/search/results/people/?keywords="/>
+                  <button type="button" class="btn-primary li-validate" onclick="validateLI()">Validate</button>
+                </div>
+                <div class="li-detail-hint">
+                  <span class="li-dot"></span>
+                  Paste the search URL directly from LinkedIn
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section C: CSV detail -->
+          <div class="flow-section detail-section" id="csv-detail" hidden>
+            <div class="fs-header">
+              <div class="fs-bullet"></div>
+              <h3>Upload CSV File</h3>
+            </div>
+            <div class="fs-body">
+              <div class="drop-zone" id="drop-zone" onclick="document.getElementById('csv-file').click()">
+                <input type="file" id="csv-file" accept=".csv" hidden onchange="handleCSV(this)"/>
+                <div class="dz-icon">📤</div>
+                <p><strong>Click to upload</strong> or drag &amp; drop</p>
+                <p class="text-muted sm">CSV only · Max 10 MB</p>
+              </div>
+              <div id="csv-badge" class="file-badge" hidden></div>
+            </div>
+          </div>
+
+          <!-- Section E: Inbound Webhook detail -->
+          <div class="flow-section detail-section" id="webhook-detail" hidden>
+            <div class="fs-header">
+              <div class="fs-bullet"></div>
+              <h3>Configure Inbound Webhook</h3>
+            </div>
+            <div class="fs-body">
+              <div class="webhook-box">
+                <code id="webhook-url"></code>
+                <button type="button" class="btn-outline sm" onclick="copyWebhook()">Copy</button>
+              </div>
+              <div class="form-group mt16">
+                <label>Webhook Name</label>
+                <input class="ui-input" type="text" placeholder="e.g. Contact Form Leads"/>
+              </div>
+            </div>
+          </div>
+
+          <div class="flow-actions">
+            <button type="button" class="btn-ghost" onclick="closeFlow()">← Back</button>
+            <button type="button" class="btn-primary" onclick="nextFromStep1()">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 2: Sender Profiles -->
+      <section id="step-2" class="flow-page">
+        <div class="flow-body">
+
+          <!-- Tabs -->
+          <div class="sp-tabs">
+            <button type="button" class="sp-tab active" data-sp-panel="li-profile" onclick="switchSenderTab('li-profile')">LinkedIn Profile</button>
+            <button type="button" class="sp-tab" data-sp-panel="email-accounts" onclick="switchSenderTab('email-accounts')">Email Accounts</button>
+          </div>
+
+          <!-- LinkedIn Profile panel -->
+          <div class="sp-panel" id="sp-li-profile">
+            <div class="sp-card">
+              <div class="sp-card-head">
+                <div class="sp-card-head-left">
+                  <span class="sp-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="#4F6EE8"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2zm-11 14H6V10h2v7zm-1-8a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3zm9 8h-2v-3.5c0-.83-.67-1.5-1.5-1.5S11 12.67 11 13.5V17H9v-7h2v1.5c.69-.79 1.59-1.5 2.5-1.5 1.93 0 3.5 1.57 3.5 3.5V17z"/></svg>
+                  </span>
+                  <div>
+                    <h3 class="sp-card-title">LinkedIn Profile</h3>
+                    <p class="text-muted sm">Pick which LinkedIn profiles you want to use for this campaign.</p>
+                  </div>
+                </div>
+                <button type="button" class="btn-primary sp-add-btn" onclick="addSenderToast('LinkedIn')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add Account
+                </button>
+              </div>
+
+              <div class="sp-toolbar">
+                <div class="sp-show">
+                  <span>Show</span>
+                  <select class="ui-select sp-show-select" id="li-page-size">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                  </select>
+                </div>
+                <div class="searchbar sp-search">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" id="li-search" placeholder="Search" oninput="filterLinkedinProfiles()"/>
+                </div>
+              </div>
+
+              <table class="sp-table">
+                <thead>
+                  <tr>
+                    <th class="sp-th-check"><input type="checkbox" id="li-all-check" onclick="toggleAllLinkedin(this.checked)"/></th>
+                    <th>NAME</th>
+                    <th>HEALTH</th>
+                    <th>DAILY LIMITS</th>
+                    <th>ACCOUNT TYPE</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="li-profile-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Email Accounts panel -->
+          <div class="sp-panel" id="sp-email-accounts" hidden>
+            <div class="sp-card">
+              <div class="sp-card-head">
+                <div class="sp-card-head-left">
+                  <span class="sp-card-icon">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F6EE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                  </span>
+                  <div>
+                    <h3 class="sp-card-title">Email Accounts</h3>
+                    <p class="text-muted sm">Pick which email accounts you want to use for this campaign.</p>
+                  </div>
+                </div>
+                <button type="button" class="btn-primary sp-add-btn" onclick="addSenderToast('Email')">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                  Add Account
+                </button>
+              </div>
+
+              <div class="sp-toolbar">
+                <div class="sp-show">
+                  <span>Show</span>
+                  <select class="ui-select sp-show-select"><option>10</option><option>25</option><option>50</option></select>
+                </div>
+                <div class="searchbar sp-search">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                  <input type="text" placeholder="Search"/>
+                </div>
+              </div>
+
+              <table class="sp-table">
+                <thead>
+                  <tr>
+                    <th class="sp-th-check"><input type="checkbox"/></th>
+                    <th>NAME</th>
+                    <th>HEALTH</th>
+                    <th>DAILY LIMITS</th>
+                    <th>ACCOUNT TYPE</th>
+                    <th>STATUS</th>
+                  </tr>
+                </thead>
+                <tbody id="email-accounts-tbody"></tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="settings-foot">
+            <div></div>
+            <div class="settings-foot-actions">
+              <button type="button" class="btn-ghost btn-prev" onclick="gotoStep(1)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+                Previous
+              </button>
+              <button type="button" class="btn-primary" onclick="gotoStep(3)">Submit</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 3: Settings -->
+      <section id="step-3" class="flow-page">
+        <div class="flow-body">
+          <div class="settings-card">
+            <!-- Campaign Name -->
+            <div class="settings-field">
+              <label class="settings-label" for="settings-camp-name">Campaign name</label>
+              <input class="ui-input settings-input" id="settings-camp-name" type="text" placeholder="New Outreach Campaign"/>
+            </div>
+
+            <!-- Sending Window + AI Assist -->
+            <div class="settings-2col">
+              <!-- Sending Window block -->
+              <div class="settings-block">
+                <div class="settings-block-head">
+                  <h4>Sending Window</h4>
+                  <p class="text-muted sm">Define when the campaign runs</p>
+                </div>
+                <div class="settings-block-body">
+                  <select class="ui-select full" id="window-preset"></select>
+                  <div class="weekday-row" id="weekday-row"></div>
+                  <div class="time-row">
+                    <div class="time-input">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                      <input type="text" id="window-time" placeholder="11:30 AM - 04:00 PM"/>
+                    </div>
+                    <input type="text" class="ui-input tz-input" id="window-tz" placeholder="USA Timezone"/>
+                  </div>
+                  <button type="button" class="add-window-btn" onclick="addWindowToast()">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    Add New Window
+                  </button>
+                </div>
+              </div>
+
+              <!-- AI Assist block -->
+              <div class="settings-block ai-block">
+                <div class="settings-block-head ai-head-row">
+                  <div class="ai-head">
+                    <span class="ai-icon-box">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff"><path d="M12 2l1.8 5.4L19 9l-5.2 1.6L12 16l-1.8-5.4L5 9l5.2-1.6z"/><path d="M19 13.5l.9 2.7L22 17l-2.1.9-.9 2.6-.9-2.6L16 17l2.1-.9z" opacity=".7"/></svg>
+                    </span>
+                    <h4>AI Assist</h4>
+                    <span class="optional-tag">Optional</span>
+                  </div>
+                  <button type="button" class="btn-primary btn-train">Train AI</button>
+                </div>
+                <p class="text-muted sm ai-sub">Define when the campaign runs</p>
+                <div id="ai-toggle-list"></div>
+              </div>
+            </div>
+
+            <!-- Decorative separator band -->
+            <div class="settings-band"></div>
+
+            <!-- Zapier section -->
+            <div class="zapier-section">
+              <div class="zapier-head">
+                <label class="checkbox-row">
+                  <input type="checkbox" id="zap-master" checked/>
+                  <span class="checkbox-fake"></span>
+                  <span>Select events to trigger zapier</span>
+                </label>
+                <span class="info-icon" title="Trigger Zapier when these events occur">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                </span>
+              </div>
+              <div class="zapier-events" id="zapier-events"></div>
+              <div class="zapier-integrations">
+                <span class="zi-label">Works With</span>
+                <div class="zi-brands" id="zi-brands"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="settings-foot">
+            <p class="settings-disclaimer">
+              <span id="settings-disclaimer-text"></span>
+              <a class="li-link" id="settings-disclaimer-link" href="#"></a>
+            </p>
+            <div class="settings-foot-actions">
+              <button type="button" class="btn-ghost btn-prev" onclick="gotoStep(2)">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg>
+                Previous
+              </button>
+              <button type="button" class="btn-primary" onclick="gotoStep(4)">Next</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- STEP 4: Launch -->
+      <section id="step-4" class="flow-page">
+        <div class="flow-body">
+          <div class="flow-section">
+            <div class="fs-header">
+              <div class="fs-bullet"></div>
+              <h3>Ready to Launch</h3>
+            </div>
+            <div class="fs-body">
+              <p class="text-muted">Review and launch your campaign. Stats will appear here once data starts coming in.</p>
+            </div>
+          </div>
+          <div class="flow-actions">
+            <button type="button" class="btn-ghost" onclick="gotoStep(3)">← Previous</button>
+            <button type="button" class="btn-success" onclick="launchCampaign()">🚀 Launch Campaign</button>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /flow-wrap -->
+  </div><!-- /main-wrap -->
+</div><!-- /app -->
+
+<!-- MODAL: Select Workflow -->
+<div id="modal-bg" class="modal-bg" style="display:none;">
+  <div class="modal">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title">Select Workflow Mode</h3>
+        <p class="text-muted sm">Choose how you want your campaign to behave</p>
+      </div>
+      <button class="close-btn" onclick="closeWorkflowModal()">✕</button>
+    </div>
+    <div class="wf-options" id="wf-options"></div>
+    <div class="modal-foot">
+      <button class="btn-ghost" onclick="closeWorkflowModal()">Close</button>
+      <button class="btn-primary" onclick="startFlow()">Next</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Lookalike Picker -->
+<div id="modal-lookalike" class="modal-bg" style="display:none;">
+  <div class="modal modal-lookalike">
+    <div class="modal-head">
+      <div>
+        <h3 class="modal-title">Lookalikes</h3>
+        <p class="text-muted sm">Select a lookalike list for this campaign</p>
+      </div>
+      <button type="button" class="close-btn close-btn-circle" onclick="closeLookalikeModal()" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      </button>
+    </div>
+    <div class="modal-body" id="lookalike-modal-body"></div>
+    <div class="modal-foot" id="lookalike-modal-foot" hidden>
+      <button type="button" class="btn-ghost" onclick="closeLookalikeModal()">Cancel</button>
+      <button type="button" class="btn-primary" onclick="confirmLookalike()">Select List</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" style="display:none;"></div>
+<script src="script.js"></script>
+</body>
+</html>
