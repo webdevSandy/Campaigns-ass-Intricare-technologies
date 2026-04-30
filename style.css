@@ -511,3 +511,125 @@ body.dark .sender-card.selected{background:rgba(79,110,232,.1);}
 
 body.dark .sp-tab.active{background:rgba(79,110,232,.15);}
 body.dark .sp-card,body.dark .sp-limit-pill{background:#1E293B;}
+
+/* ─── MOBILE HAMBURGER + SIDEBAR DRAWER ─── */
+.topbar-mobile-toggle{display:none;align-items:center;justify-content:center;background:none;border:none;color:var(--text);cursor:pointer;padding:8px;border-radius:6px;margin-right:6px;}
+.topbar-mobile-toggle:hover{background:var(--bg);}
+.sidebar-backdrop{display:none;}
+
+/* ─── RESPONSIVE: ≤1024px (tablet & small laptop) ─── */
+@media (max-width: 1024px) {
+  .im-card-grid{grid-template-columns:repeat(2,1fr);}
+  .settings-2col{grid-template-columns:1fr;}
+  .page,.flow-page{padding:20px;}
+  .topbar{padding:0 20px;}
+  .stepper{margin:16px 20px 0;}
+  .sender-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+/* ─── RESPONSIVE: ≤768px (tablet portrait) ─── */
+@media (max-width: 768px) {
+  /* Sidebar becomes a slide-in drawer */
+  .sidebar{position:fixed;top:0;left:0;bottom:0;z-index:100;width:240px;transform:translateX(-100%);transition:transform .25s ease;}
+  body.sidebar-open .sidebar{transform:translateX(0);box-shadow:4px 0 24px rgba(0,0,0,.18);}
+  body.sidebar-open .sidebar-backdrop{display:block;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:99;}
+
+  /* Topbar */
+  .topbar-mobile-toggle{display:inline-flex;}
+  .topbar{padding:0 14px;height:56px;}
+  .topbar-user-info{display:none;}
+  .topbar-avatar{width:32px;height:32px;}
+  .breadcrumb{font-size:13px;gap:6px;}
+
+  /* Pages */
+  .page,.flow-page{padding:16px;}
+
+  /* Stepper compact */
+  .stepper{margin:14px 16px 0;padding:6px;gap:4px;}
+  .step-item{padding:6px 10px;font-size:12px;gap:6px;}
+  .step-icon-box{width:24px;height:24px;}
+
+  /* Listing page header rows */
+  .camp-title-row{flex-direction:column;align-items:stretch;gap:12px;}
+  .camp-title-row .btn-primary{align-self:flex-end;}
+  .filter-bar{flex-direction:column;align-items:stretch;gap:12px;}
+  .filter-left{flex-wrap:wrap;gap:8px;}
+  .filter-bar .btn-export{align-self:flex-end;}
+
+  /* Stack import method cards single-col */
+  .im-card-grid{grid-template-columns:1fr;}
+
+  /* Sender profile cards single-col */
+  .sender-grid{grid-template-columns:1fr;}
+
+  /* Sender profile card header stack */
+  .sp-card-head{flex-direction:column;align-items:stretch;gap:12px;}
+  .sp-add-btn{align-self:flex-start;}
+
+  /* Sender profile toolbar stack */
+  .sp-toolbar{flex-direction:column;align-items:stretch;gap:10px;}
+  .sp-search{width:100%;}
+  .sp-search input{width:100%;}
+
+  /* Sender profile table → horizontal scroll */
+  .sp-card{overflow-x:auto;}
+  .sp-table{min-width:720px;}
+
+  /* Settings */
+  .settings-card{padding:16px;}
+  .settings-foot{flex-direction:column;align-items:stretch;gap:12px;}
+  .settings-foot-actions{justify-content:flex-end;}
+  .time-row{flex-direction:column;gap:10px;}
+  .ai-head-row{flex-direction:column;align-items:stretch;gap:10px;}
+  .btn-train{align-self:flex-start;}
+  .zapier-events{gap:14px 18px;}
+  .zapier-integrations{flex-direction:column;align-items:flex-start;gap:8px;}
+
+  /* LinkedIn detail panel */
+  .li-detail-input-row{flex-direction:column;align-items:stretch;}
+  .li-validate{width:100%;}
+  .li-detail-top{flex-direction:column;align-items:flex-start;}
+
+  /* Modals */
+  .modal{width:calc(100% - 24px);margin:12px;max-height:calc(100vh - 24px);overflow-y:auto;}
+  .modal.modal-lookalike{min-height:0;}
+
+  /* Workflow modal cards */
+  .wf-card{gap:10px;padding:12px;}
+  .wf-img{width:60px;height:40px;}
+
+  /* Flow body: kill max-width */
+  .flow-body{max-width:100%;}
+}
+
+/* ─── RESPONSIVE: ≤480px (phones) ─── */
+@media (max-width: 480px) {
+  .page,.flow-page{padding:14px;}
+  .stepper{margin:12px 14px 0;}
+  .step-item{padding:5px 8px;}
+  .step-item span{font-size:11px;}
+  .camp-heading{font-size:18px;}
+  .camp-sub{font-size:12px;}
+
+  /* Page footer actions stack full-width */
+  .flow-actions{flex-direction:column-reverse;align-items:stretch;gap:8px;}
+  .flow-actions .btn-primary,.flow-actions .btn-success,.flow-actions .btn-ghost{width:100%;justify-content:center;text-align:center;}
+
+  /* Settings foot */
+  .settings-foot-actions{flex-direction:column-reverse;align-items:stretch;}
+  .settings-foot-actions .btn-primary,.settings-foot-actions .btn-prev{width:100%;justify-content:center;}
+
+  /* Topbar */
+  .topbar{padding:0 12px;}
+  .breadcrumb{font-size:12.5px;}
+
+  /* Settings inputs */
+  .settings-input{padding:9px 12px;}
+
+  /* Workflow modal: stack illustration */
+  .wf-card{flex-direction:column;align-items:flex-start;}
+  .wf-img{align-self:center;}
+
+  /* AI toggle row - keep readable */
+  .ai-toggle{padding:8px 0;}
+}

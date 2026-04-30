@@ -15,7 +15,7 @@
     <div class="sidebar-brand">
       <div class="brand-icon">⚡</div>
       <span class="brand-name">Frontend Task</span>
-      <button class="sidebar-toggle">☰</button>
+      <button type="button" class="sidebar-toggle" onclick="toggleSidebar()" aria-label="Close menu">☰</button>
     </div>
     <nav class="sidebar-nav" id="sidebar-nav"></nav>
     <div class="sidebar-bottom">
@@ -35,10 +35,16 @@
     </div>
   </aside>
 
+  <!-- Mobile sidebar backdrop -->
+  <div class="sidebar-backdrop" onclick="toggleSidebar()"></div>
+
   <!-- MAIN -->
   <div class="main-wrap">
     <!-- TOPBAR -->
     <header class="topbar">
+      <button type="button" class="topbar-mobile-toggle" onclick="toggleSidebar()" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
       <div class="breadcrumb">
         <span id="bc-page" onclick="onBreadcrumbClick()">Campaign</span>
         <span class="bc-sep" id="bc-sep2" style="display:none">›</span>

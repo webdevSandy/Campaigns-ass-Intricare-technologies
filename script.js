@@ -69,6 +69,16 @@ function setTheme(t) {
   $('btn-dark').classList.toggle('active', t  === 'dark');
 }
 
+/* ══ MOBILE SIDEBAR DRAWER ══ */
+function toggleSidebar() {
+  document.body.classList.toggle('sidebar-open');
+}
+
+// Auto-close drawer when window resizes back to desktop
+window.addEventListener('resize', () => {
+  if (window.innerWidth > 768) document.body.classList.remove('sidebar-open');
+});
+
 /* ══ PAGE SWITCHING ══ */
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
